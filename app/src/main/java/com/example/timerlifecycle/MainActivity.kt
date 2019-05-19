@@ -21,11 +21,12 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
 
-        timer = Timer()
+        timer = Timer(this.lifecycle)
 
         if(savedInstanceState != null) {
             timer.seconds = savedInstanceState.getInt(KEY_TIMER_SECONDS, 0)
             timer.secondsCount.value = timer.seconds
+            timer.onStart()
         }
 
 
@@ -43,14 +44,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
         outState.putInt(KEY_TIMER_SECONDS, timer.seconds)
         Timber.i("onSaveInstanceState Called")
-        super.onSaveInstanceState(outState)
     }
 
 
     override fun onStop() {
         super.onStop()
+        timer.onStop()
     }
 
 
