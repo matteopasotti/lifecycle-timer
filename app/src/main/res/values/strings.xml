@@ -2,4 +2,5 @@
     <string name="app_name">TimerLifecycle</string>
     <string name="start">START</string>
     <string name="stop">STOP</string>
+    <string name="_0">0</string>
 </resources>
